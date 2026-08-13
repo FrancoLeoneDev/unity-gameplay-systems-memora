@@ -23,4 +23,4 @@ happy path cleans up one set of things and the emergency path cleans up a differ
 Every actuator kills its own running coroutine before starting a new one, and restores state in
 `OnDisable`.
 
-**Entry point:** `DoctorSightEvent.cs` · **Base:** `SightEvent.cs` · **Depends on:** `_shared`, RecallDaze, HDRP volumes
+**Entry point:** `DoctorSightEvent.cs` · **Base:** `SightEvent.cs` · **Depends on:** `10-save-system`, `_shared`, RecallDaze, HDRP volumes

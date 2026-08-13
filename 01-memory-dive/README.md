@@ -22,4 +22,4 @@ Crossing the commit threshold hands off to an additive scene load with its own a
   hold. A persisted reduced-motion flag kills the Z-breathing, micro-tilt, pulsation, UV warp and FOV
   drop, leaving the rest of the sequence intact.
 
-**Entry point:** `PhotoMemoryPortal.cs` · **Depends on:** `_shared` (save, input, managers), `SceneControllerManager`, DOTween, HDRP
+**Entry point:** `PhotoMemoryPortal.cs` · **Depends on:** `10-save-system`, `_shared` (input, managers), `SceneControllerManager`, DOTween, HDRP

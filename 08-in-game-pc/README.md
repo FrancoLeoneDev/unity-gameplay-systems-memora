@@ -20,4 +20,4 @@ project's systemic bug class, handled explicitly here.
 Save/restore reads both the old format (a raw bool) and the new one (a struct), and re-arms dependent
 triggers to avoid soft-locks on load.
 
-**Entry point:** `Pc.cs` · **Depends on:** `_shared`, `FuseManager`, uGUI, HDRP
+**Entry point:** `Pc.cs` · **Depends on:** `10-save-system`, `_shared`, `FuseManager`, uGUI, HDRP

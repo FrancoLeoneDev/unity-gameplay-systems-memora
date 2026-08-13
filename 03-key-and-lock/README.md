@@ -20,4 +20,4 @@ consumed and that door may be the only way forward — leaving it locked would b
 an empty field. It logs a loud error, skips the animation, and opens anyway. The run always has to be
 able to continue.
 
-**Entry point:** `DoorWithKey.cs` · **Editor:** `DoorWithKeyEditor.cs` · **Depends on:** `02-physics-door`, `04-interactions-menu`, `_shared`
+**Entry point:** `DoorWithKey.cs` · **Editor:** `DoorWithKeyEditor.cs` · **Depends on:** `02-physics-door`, `04-interactions-menu`, `10-save-system`, `_shared`

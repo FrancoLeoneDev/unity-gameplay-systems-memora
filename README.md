@@ -4,7 +4,8 @@ Gameplay systems extracted from **[Memora](https://memoraoficial.itch.io/memora)
 psychological horror game built in **Unity 6 / HDRP**.
 
 > **These are reading copies, not an installable package.** Each system references project-wide
-> services (save, input, audio, managers) that ship in `_shared/`, plus Unity/HDRP and DOTween.
+> services — persistence in `10-save-system/`, input/audio/managers in `_shared/` — plus Unity/HDRP
+> and DOTween.
 > Dropping a folder into a fresh project will not compile — the goal here is to let you *read* real
 > production code from a game that actually shipped, not to hand you a plugin.
 >
@@ -36,9 +37,10 @@ Nothing here was written for a portfolio. Every file runs in the game.
 | 07 | [Document Reading](07-document-reading) | Resident Evil-style note reading — the document never moves; the camera fades and teleports to it |
 | 08 | [In-Game PC](08-in-game-pc) | A working computer inside the game: boot sequence, password, mail, security-camera circuit, and a printer that prints a physical photo |
 | 09 | [Scripted Set-Piece](09-scripted-set-piece) | Template-Method framework for authored horror moments, composed from single-responsibility actuators |
+| 10 | [Save System](10-save-system) | JSON persistence with atomic writes, automatic backup recovery, and a multi-pass restore that survives entities appearing mid-load |
 | — | [`director-core`](director-core) | The scheduling engine behind the ambient-event director. **Pure C#, compiles and tests standalone** |
 | — | [`editor-tools`](editor-tools) | Editor tooling built to iterate on a 33-minute demo without playing it end to end |
-| — | [`_shared`](_shared) | Save system, input, audio library and managers that every system above leans on |
+| — | [`_shared`](_shared) | Input, audio library and managers that every system above leans on |
 
 ---
 
@@ -46,7 +48,7 @@ Nothing here was written for a portfolio. Every file runs in the game.
 
 If you only open three files:
 
-- **[`_shared/SaveableEntity.cs`](_shared/SaveableEntity.cs)** — Unity's "fake null" on destroyed
+- **[`10-save-system/SaveableEntity.cs`](10-save-system/SaveableEntity.cs)** — Unity's "fake null" on destroyed
   components, and why destroying a GameObject *during* a restore has to be queued instead of run
   in place. The comment names the production soft-lock that motivated it.
 - **[`01-memory-dive/InspectedStencilPass.cs`](01-memory-dive/InspectedStencilPass.cs)** — HDRP does

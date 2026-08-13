@@ -23,4 +23,4 @@ were eaten by the angular drag and the spring, which are tuned for the continuou
   not from a field somebody could set wrong.
 - Collision layers follow the state machine, so you don't get stopped at a distance by a frozen blade.
 
-**Entry point:** `PhysicDoor.cs` · **Depends on:** `_shared` (audio library, save, interaction), DOTween
+**Entry point:** `PhysicDoor.cs` · **Depends on:** `10-save-system`, `_shared` (audio library, interaction), DOTween

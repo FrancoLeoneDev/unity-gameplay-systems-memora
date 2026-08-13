@@ -20,4 +20,4 @@ because that's what the story needs.
 of publishing a `GameState` through the mechanism the class already consults two lines below. It's one
 line and it works, but it's the kind of shortcut worth naming rather than hiding.
 
-**Entry point:** `InventoryUI.cs` (view) / `Inventory.cs` (data) · **Depends on:** `_shared`, `06-chain-examine`, DOTween, uGUI
+**Entry point:** `InventoryUI.cs` (view) / `Inventory.cs` (data) · **Depends on:** `10-save-system`, `_shared`, `06-chain-examine`, DOTween, uGUI
