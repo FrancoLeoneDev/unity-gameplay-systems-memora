@@ -277,19 +277,42 @@ public class SaveManager : MonoBehaviour
         return settings.AutoRecoverFromBackup && File.Exists(settings.GetBackupPath(slot));
     }
 
+    /// <summary>
+    /// Metadata del slot (fecha, escena) para la UI de partidas. Sigue la MISMA política de
+    /// recuperación que <see cref="ReadFile"/>: <see cref="SlotExists"/> ya da por válido un slot que
+    /// sólo tiene .bak — es lo que habilita el botón Continue —, así que mirar únicamente el primario
+    /// devolvía null y la UI mostraba fecha y escena EN BLANCO para una partida perfectamente
+    /// cargable. Silencioso a propósito: esto se llama por cada slot al abrir el menú y no es un
+    /// camino de error, es una sonda.
+    /// </summary>
     public SaveMetadata GetSlotMetadata(int slot)
     {
         string path = settings.GetSavePath(slot);
-        if (!File.Exists(path)) return null;
+        string backup = settings.GetBackupPath(slot);
+        bool puedeUsarBackup = settings.AutoRecoverFromBackup && File.Exists(backup);
+
+        if (!File.Exists(path))
+        {
+            if (!puedeUsarBackup) return null;
+            path = backup;
+        }
 
         try
         {
-            string raw = File.ReadAllText(path);
-            return serializer.DeserializeMetadataOnly(raw);
+            return serializer.DeserializeMetadataOnly(File.ReadAllText(path));
         }
         catch
         {
-            return null;
+            // El primario existe pero no parsea: el .bak todavía puede estar sano.
+            if (!puedeUsarBackup || path == backup) return null;
+            try
+            {
+                return serializer.DeserializeMetadataOnly(File.ReadAllText(backup));
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 
